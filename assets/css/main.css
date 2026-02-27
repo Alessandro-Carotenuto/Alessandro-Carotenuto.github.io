@@ -926,6 +926,11 @@ section,
   border: 2px solid var(--accent-color);
 }
 
+.portfolio .portfolio-content img.fit-height {
+  object-fit: contain;
+  background-color: #fff;
+}
+
 .portfolio .portfolio-content img.thesiswork {
   transition: 0.3s;
   width: 100%;
