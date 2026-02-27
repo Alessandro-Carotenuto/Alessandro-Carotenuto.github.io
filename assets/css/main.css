@@ -12,6 +12,7 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
+    color-scheme: light;
   --default-font: "Roboto",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Raleway",  sans-serif;
   --nav-font: "Poppins",  sans-serif;
@@ -69,6 +70,7 @@ body {
 
 
 body.dark-mode {
+  --color-scheme: dark;
   --background-color: oklab(17.421% 0.00342 -0.02902);
   --default-color: #e0e0e0;
   --heading-color: #ffffff;
