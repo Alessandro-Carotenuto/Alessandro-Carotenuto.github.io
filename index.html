@@ -145,7 +145,7 @@
                   <i class="bi bi-tools fs-1" style="color:  #0d3661"></i>
                   <div>
                     <h3 class="mb-1 fw-bold" style="font-size: 1.3rem;">Softwares & Libraries</h3>
-                    <p class="mb-0 text-secondary" style="font-size: 0.9rem; line-height: 1.2;">PyTorch, Hugging Face, OpenCV, Git, Simulink, CoppeliaSim, ROS, scikit-learn</p>
+                    <p class="mb-0 text-secondary" style="font-size: 0.9rem; line-height: 1.2;">PyTorch,  Hugging Face, OpenCV, Git, Simulink, CoppeliaSim, ROS, scikit-learn, SimPy, NumPy</p>
                   </div>
                 </div>
               </div>
@@ -313,13 +313,14 @@
 
       <div class="container">
 
-        <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
+        <div class="isotope-layout" data-default-filter=":not(.filter-WIP)" data-layout="masonry" data-sort="original-order">
 
           <ul class="portfolio-filters isotope-filters" data-aos="fade-up" data-aos-delay="100">
-            <li data-filter="*" class="filter-active">All</li>
+            <li data-filter=":not(.filter-WIP)" class="filter-active">All</li>
             <li data-filter=".filter-AI">Artificial Intelligence</li>
             <li data-filter=".filter-ROBO">Robotics</li>
             <li data-filter=".filter-SD">Software Development</li>
+            <li data-filter=".filter-WIP">🚧 Work in Progress</li>
           </ul><!-- End Portfolio Filters -->
 
           <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="200">
@@ -376,22 +377,22 @@
               </div>
             </div><!-- End Portfolio Item -->
 
-
-            <template> <!-- PORTFOLIO TO BE ADDED  -->
-
-            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-AI">
+            <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-WIP">
               <div class="portfolio-content h-100">
-                <img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt="">
+                <img src="assets/img/portfolio/placeholder.png" class="img wip" alt="">
+                <span class="wip-tag">Still Building...</span>
                 <div class="portfolio-info">
-                  <h4>Generative AI</h4>
-                  <p>Generative AI Project</p>
+                  <h4>Robotic Modelling</h4><h4>Symbolic Computing</h4>
+                  <p>Robotics FASE Toolbox</p>
                   <a href="assets/img/portfolio/placeholder.png" title="Placeholder Project" data-gallery="portfolio-gallery-placeholder" class="glightbox preview-link"><i class="bi bi-zoom-in"></i></a>
-                  <a href="" title="More Details" class="details-link"><i class="bi bi-card-list"></i></a>
-                  <a href="https://git.new/generativeAI" title="Github" class="github-link"><i class="bi bi-github"></i></a>
+                  <a href="portfolio pages/FASE.html" title="More Details" class="details-link"><i class="bi bi-card-list"></i></a>
+                  <a href="https://git.new/FASE" title="Github" class="github-link"><i class="bi bi-github"></i></a>
                 </div>
               </div>
             </div><!-- End Portfolio Item -->
+            
 
+            <template> <!-- PORTFOLIO TO BE ADDED  -->
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-AI">
               <div class="portfolio-content h-100">
                 <img src="assets/img/portfolio/placeholder.png" class="img-fluid" alt="">
