@@ -129,12 +129,16 @@
                   <li><strong>Focus:</strong>
                     <span class="cat-tag">Robotic Modelling</span>
                     <span class="cat-tag">Symbolic Computing</span>
-                    <span class="cat-tag">Kinematics & Dynamics</span>
+                    <span class="cat-tag">Kinematics &amp; Dynamics</span>
                     <span class="cat-tag">Mobile Robotics</span>
+                    <span class="cat-tag">Simulation</span>
+                    <span class="cat-tag">Controllability Analysis</span>
                   </li>
                   <li><strong>Tech Stack</strong>:
                     <span class="tech-tag">Python</span>
                     <span class="tech-tag">SymPy</span>
+                    <span class="tech-tag">NumPy</span>
+                    <span class="tech-tag">Matplotlib</span>
                   </li>
                   <li><strong>Status</strong>: <span class="current-tag" style="position:static; display:inline-block;">🚧 Work in Progress</span></li>
                   <li>
@@ -144,21 +148,28 @@
                   </li>
                 </ul>
               </div>
-
-              <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-                <h2>Overview</h2>
-                <p>
-                  A symbolic robotics toolbox built in Python using <strong>SymPy</strong>, designed to model, analyse, and control robotic systems
-                  using exact symbolic mathematics rather than numerical approximations.
-                  It supports both <strong>serial manipulators</strong> and <strong>autonomous mobile robots</strong>.
-                </p>
-                <p>
-                  Given a joint string (e.g. <code>"RRR"</code> for a 3-DOF revolute arm), the toolbox automatically computes
-                  forward kinematics, the geometric Jacobian, and the full Lagrangian dynamics — inertia matrix $M(q)$,
-                  Coriolis vector $c(q, \dot{q})$, and gravity vector $G(q)$ — all in closed symbolic form.
-                </p>
-              </div>
             </div>
+                          <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+              <h2>Overview</h2>
+              <p>
+                A symbolic robotics toolbox built in Python using <strong>SymPy</strong>, designed to model, analyse, and control robotic systems
+                using exact symbolic mathematics rather than numerical approximations.
+                It covers two domains: <strong>serial manipulators</strong> and <strong>autonomous mobile robots (AMR)</strong>.
+              </p>
+              <p>
+                For manipulators, given a joint string (e.g. <code>"RRR"</code> or <code>"2R1P"</code>), the toolbox automatically
+                computes forward kinematics via DH parameters, the geometric Jacobian $J(q)$, and the full
+                Lagrangian dynamics — inertia matrix $M(q)$, Coriolis vector $c(q,\dot{q})$, and gravity
+                vector $G(q)$ — with configurable per-link inertia-tensor assumptions.
+              </p>
+              <p>
+                The AMR module derives kinematic models $\dot{q} = G(q)\,u$ from explicit Pfaffian constraints
+                or from built-in presets (Unicycle, Bicycle RWD/FWD, Car-with-Trailer with articulated body support).
+                Models are integrated numerically (Euler / RK4) through a multi-robot <strong>Environment</strong>,
+                rendered via a static and animated <strong>Displayer</strong>, and analysed for controllability
+                through iterated <strong>Lie brackets</strong>.
+              </p>
+              </div>
 
           </div>
 
@@ -179,35 +190,35 @@
         <div class="col-lg-3 col-md-6">
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
             <i class="bi bi-diagram-3 fs-1" style="color: var(--secondary-accent-color);"></i>
-            <h5 class="mt-2">Forward Kinematics</h5>
-            <p>Automatic computation of the full homogeneous transform chain via Denavit–Hartenberg parameters.</p>
-            <p>$$T_n^0 = \prod_{i=1}^{n} A_i(q_i)$$</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
-            <i class="bi bi-grid fs-1" style="color: var(--secondary-accent-color);"></i>
-            <h5 class="mt-2">Geometric Jacobian</h5>
-            <p>Symbolic derivation of the full Jacobian, split into linear $J_v$ and angular $J_\omega$ components.</p>
-            <p>$$J(q) = \begin{bmatrix} J_v \\ J_\omega \end{bmatrix}$$</p>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-md-6">
-          <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
-            <i class="bi bi-lightning fs-1" style="color: var(--secondary-accent-color);"></i>
-            <h5 class="mt-2">Lagrangian Dynamics</h5>
-            <p>Full symbolic derivation of the robot's equations of motion from kinetic and potential energy.</p>
+            <h5 class="mt-2">Manipulator Modelling</h5>
+            <p>From a joint string, automatically derives the DH kinematic chain, geometric Jacobian, and full Lagrangian dynamics with configurable per-link inertia-tensor assumptions.</p>
             <p>$$\tau = M(q)\ddot{q} + c(q,\dot{q}) + G(q)$$</p>
           </div>
         </div>
 
         <div class="col-lg-3 col-md-6">
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
-            <i class="bi bi-car-front-fill fs-1" style="color: var(--secondary-accent-color);"></i>
-            <h5 class="mt-2">Mobile Robotics</h5>
-            <p>AMR module with planned support for differential drive, omnidirectional, and Ackermann kinematic models, path planning, and SLAM.</p>
+            <i class="bi bi-calculator fs-1" style="color: var(--secondary-accent-color);"></i>
+            <h5 class="mt-2">Kinematic Model Derivation</h5>
+            <p>Builds $\dot{q} = G(q)\,u$ from Pfaffian constraints (null-space method) or from four built-in presets, including a 5-DOF Car-with-Trailer with articulated body rendering.</p>
+            <p>$$A^\top(q)\,\dot{q} = 0 \;\Rightarrow\; G = \ker A^\top$$</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
+            <i class="bi bi-people fs-1" style="color: var(--secondary-accent-color);"></i>
+            <h5 class="mt-2">Multi-Robot Simulation</h5>
+            <p>A shared <strong>Environment</strong> runs multiple robots with independent inputs via Euler or RK4, logging all trajectories. The <strong>Displayer</strong> renders them as static or frame-by-frame animated plots.</p>
+          </div>
+        </div>
+
+        <div class="col-lg-3 col-md-6">
+          <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
+            <i class="bi bi-bezier2 fs-1" style="color: var(--secondary-accent-color);"></i>
+            <h5 class="mt-2">Controllability Analysis</h5>
+            <p>Computes the involutive closure of the input distribution via iterated Lie brackets, checking whether the control matrix reaches full rank (STLC).</p>
+            <p>$$[g_i,g_j] = \tfrac{\partial g_j}{\partial q}g_i - \tfrac{\partial g_i}{\partial q}g_j$$</p>
           </div>
         </div>
 
