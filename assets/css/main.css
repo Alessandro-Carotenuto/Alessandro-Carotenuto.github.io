@@ -945,7 +945,7 @@ section,
   width: 100%;
   height: 250px;            /*fixed height for all portfolio items to maintain a consistent grid layout*/
   object-fit: cover;        /* cut the image to fill the container without distortion */
-  border: 3px solid #001549e7;
+  border: 3px solid #006c1fe7;
 }
 
 .portfolio .portfolio-content .thesis-tag {
@@ -968,7 +968,7 @@ section,
   position: absolute;
   bottom: 8px;
   right: 8px;
-  background-color: #001549e7;
+  background-color: #006c1fe7;
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
