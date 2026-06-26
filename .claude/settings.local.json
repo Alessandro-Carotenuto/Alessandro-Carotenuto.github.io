@@ -3,7 +3,18 @@
     "allow": [
       "WebSearch",
       "WebFetch(domain:commons.wikimedia.org)",
-      "WebFetch(domain:www.cleanpng.com)"
+      "WebFetch(domain:www.cleanpng.com)",
+      "Bash(Get-ChildItem -Path \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\Alessandro-Carotenuto.github.io\" -Recurse -Force)",
+      "Bash(Select-Object FullName, PSIsContainer)",
+      "Bash(Sort-Object FullName)",
+      "Bash(Format-Table -AutoSize)",
+      "Bash(python tmp_reward_calc.py)",
+      "Bash(python3 tmp_reward_calc.py)",
+      "Bash(\"C:\\\\Users\\\\alex1\\\\anaconda3\\\\python.exe\" tmp_reward_calc.py)",
+      "Bash(del \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_reward_calc.py\")",
+      "Bash(del \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_episode_log.txt\")",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_log2.txt\" | & \"C:\\\\Users\\\\alex1\\\\anaconda3\\\\python.exe\" \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_reward_calc.py\")",
+      "PowerShell(Get-Content \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_log3.txt\" | & \"C:\\\\Users\\\\alex1\\\\anaconda3\\\\python.exe\" \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_reward_calc.py\")"
     ]
   }
 }
