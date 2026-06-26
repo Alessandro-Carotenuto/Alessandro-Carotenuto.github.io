@@ -63,21 +63,6 @@ window.addEventListener('load', function() {
   });
 });
 
-  /* Dark mode toggle with localStorage persistence */
-
-  const toggle = document.getElementById('dark-mode-toggle');
-
-  if (localStorage.getItem('darkMode') === 'true') {
-    document.body.classList.add('dark-mode');
-    toggle.checked = true;
-  }
-
-  toggle.addEventListener('change', function() {
-    document.body.classList.toggle('dark-mode', this.checked);
-    localStorage.setItem('darkMode', this.checked);
-  });
-
-  /* End of dark mode toggle */
 
   /**
    * Scroll top button
