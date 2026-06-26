@@ -165,7 +165,6 @@
                       <span class="cat-tag">Computer Vision</span>
                       <span class="cat-tag">Trajectory Tracking</span>
                   </li>
-                  </li>
                   <li><strong>Tech Stack</strong>:
                       <span class="tech-tag">MATLAB/Simulink</span>
                       <span class="tech-tag">CoppeliaSim</span>
@@ -181,22 +180,47 @@
                 </ul>
               </div>
             </div>
+
+            <!-- Stats Row -->
+            <div class="col-12 mt-4">
+              <div class="row gy-3 text-center">
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">~100%</h2>
+                    <p class="mb-0">Simulated Landing Success Rate</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">&lt; 0.5 m</h2>
+                    <p class="mb-0">Position Tracking Error</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">4</h2>
+                    <p class="mb-0">Trajectories Validated</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="portfolio-description">
             <h2>Overview</h2>
             <p>
-              This project presents a complete autonomy pipeline for vision-based quadrotor landing on dynamic platforms. 
-              The system integrates high-frequency perception, state estimation, and cascaded PID control to enable autonomous docking on 
-              moving targets.
+              Full reimplementation of <a href="https://www.researchgate.net/publication/319244044_Vision-based_Autonomous_Quadrotor_Landing_on_a_Moving_Platform" target="_blank">Falanga et al. (2017)</a>,
+              a complete autonomy pipeline for vision-based quadrotor landing on a moving platform. The system addresses the three core challenges
+              of the problem: <strong>detecting</strong> a visual tag on the target using only onboard camera images, <strong>estimating</strong>
+              its position and velocity via a Kalman filter with constant-velocity motion model
+              $$\hat{\mathbf{x}}_k = \hat{\mathbf{x}}_k^- + K_k\left(z_k - H\hat{\mathbf{x}}_k^-\right)$$
+              and <strong>tracking</strong> it through a cascaded PID controller while executing a smooth landing maneuver.
             </p>
-
-            <div style="font-size: 1.2rem; text-align: center; margin: 15px 0;">
-              $$\hat{x}_{k} = \hat{x}_{k}^{-} + K_k(z_k - H\hat{x}_{k}^{-})$$
-            </div>
-
             <p>
-              By fusing camera-based detection with a predictive <strong>Kalman Filter</strong>, the framework maintains robust tracking even 
-              during intermittent visual occlusions. The architecture was validated across complex trajectories (circular, figure-8) using a 
-              Simulink-CoppeliaSim co-simulation environment.
+              The architecture is structured as a four-state finite state machine (TAKEOFF, SEARCH, FOLLOW, LANDING) running at 20 Hz in
+              MATLAB/Simulink, co-simulated with CoppeliaSim for real-time camera rendering. A predictive feedforward
+              ($\mathbf{p}_{\text{target}} = \hat{\mathbf{p}} + \hat{\mathbf{v}}\cdot\tau$) compensates for filter lag during tracking.
+              Validated across stationary, linear, circular, and figure-8 platform trajectories, the system achieves
+              <strong>position tracking errors below 0.5 m</strong> and a <strong>~100% simulated landing success rate</strong> in all tested scenarios.
             </p>
             </div>
           </div>
@@ -219,38 +243,35 @@
 
           <div class="col-lg-3 col-md-6">
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
+                <i class="bi bi-diagram-3 fs-1" style="color: var(--secondary-accent-color);"></i>
+                <h5 class="mt-2">Autonomous FSM</h5>
+                <p>Four-state mission logic: <strong>TAKEOFF, SEARCH, FOLLOW, LANDING</strong>, with hysteresis-based transitions for robust mode switching.</p>
+              </div>
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+              <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-camera-video fs-1" style="color: var(--secondary-accent-color);"></i>
-                <h5 class="mt-2">Visual Detection</h5>
-                <p>Perspective-n-Point (PnP) geometry to recover the platform's 3D pose in real-time.</p>
+                <h5 class="mt-2">Vision Pipeline</h5>
+                <p>Tag detection via adaptive thresholding + RANSAC, followed by PnP pose recovery. Adaptive FOV expands from 90° to 135° during final descent.</p>
               </div>
-          </div><!-- End Info Item  -->
-
-          
-          <div class="col-lg-3 col-md-6">
-              <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
-                <i class="bi bi-cpu fs-1" style="color: var(--secondary-accent-color);"></i>
-                <h5 class="mt-2">Flight Control</h5>
-                <p>A dual-loop control architecture managing attitude stability and position tracking for landing maneuvers.</p>
-              </div>
-          </div><!-- End Info Item  -->
-
-          <div class="col-lg-3 col-md-6">
-              <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
-                <i class="bi bi-bezier2 fs-1" style="color: var(--secondary-accent-color);"></i>
-                <h5 class="mt-2">Predictive Planning</h5>
-                <p>$p_{ref} = \hat{p} + \hat{v}\tau$</p>
-                <p>A feedforward trajectory generator that accounts for control lag by predicting the platform's future position</p>
-              </div>
-          </div><!-- End Info Item  -->
+          </div><!-- End Info Item -->
 
           <div class="col-lg-3 col-md-6">
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-activity fs-1" style="color: var(--secondary-accent-color);"></i>
-                <h5 class="mt-2">Kalman Filtering</h5>
-                <p>$K_k = P_k^- H^T S_k^{-1}$</p>
-                <p>Robust state estimation and motion prediction</p>
+                <h5 class="mt-2">Kalman + Attitude Gating</h5>
+                <p>Constant-velocity KF for platform state estimation. Measurement updates are gated at $|\phi|, |\theta| > 10^\circ$ to suppress noisy detections during aggressive maneuvers.</p>
               </div>
-          </div><!-- End Info Item  -->
+          </div><!-- End Info Item -->
+
+          <div class="col-lg-3 col-md-6">
+              <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
+                <i class="bi bi-sliders fs-1" style="color: var(--secondary-accent-color);"></i>
+                <h5 class="mt-2">Cascaded PID Control</h5>
+                <p>Outer position loop computes desired thrust and tilt angles; inner attitude loop tracks them via PID with inertia feedforward. Anti-windup on all axes.</p>
+              </div>
+          </div><!-- End Info Item -->
 
         </div>
 

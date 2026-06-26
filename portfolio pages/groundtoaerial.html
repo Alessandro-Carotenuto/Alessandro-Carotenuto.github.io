@@ -176,7 +176,7 @@
                       <span class="tech-tag">Transformers (Hugging Face)</span>
                       <span class="tech-tag">PIL/OpenCV</span>
                   </li>
-                  <li><strong>Project date</strong>: July 2025</li>
+                  <li><strong>Project date</strong>: 2025 – 2026</li>
                   <li>
                     <span style="font-size: 1.1rem;">
                       <a href="https://git.new/synsatTT" target="_blank" class="btn btn-sm btn-outline-accent w-100 fs-6">Official Repository <i class="bi bi-github"></i></a>
@@ -184,23 +184,31 @@
                   </li>
                 </ul>
               </div>
-                <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-                    <h2>Overview</h2>
-                    <p>
-                        This project implements a cross-view synthesis pipeline that transforms ground-level street photographs into synthetic 
-                        overhead aerial imagery. The system utilizes a <strong>VQGAN-Transformer</strong> architecture to bridge the extreme 
-                        geometric gap between terrestrial and satellite viewpoints.
-                    </p>
+            </div>
 
-                    <div style="font-size: 0.9rem; text-align: center; margin: 15px 0;">
-                        $$P(s) = \prod_{i} p(s_i \mid s_{i}, c_{ground})$$
-                    </div>
+            <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
+                <h2>Overview</h2>
+                <p>
+                    Cross-view image synthesis is an extreme domain-transfer problem: a ground-level panorama and its corresponding satellite
+                    image share the same geographic location but differ completely in viewpoint, scale, and visual structure. No geometric
+                    supervision is available — the model must learn the correspondence purely from paired examples.
+                </p>
+                <p>
+                    The system addresses this with a two-stage <strong>VQGAN-Transformer</strong> pipeline. A pretrained, frozen VQGAN
+                    (ImageNet f16) encodes both views into 16×16 grids of discrete codebook indices — 256 tokens per image. A minGPT
+                    Transformer then learns to autoregressively predict the 256 satellite tokens conditioned on the 256 ground-level tokens,
+                    trained with cross-entropy on 35,191 CVUSA image pairs over 100 epochs:
+                </p>
 
-                    <p>
-                        A pretrained VQGAN encodes both views into discrete token sequences, while a GPT Transformer learns to autoregressively 
-                        generate satellite tokens conditioned on the ground-level input..
-                    </p>
+                <div style="font-size: 0.9rem; text-align: center; margin: 15px 0;">
+                    $$P(s) = \prod_{i} p(s_i \mid s_{&lt;i}, c_{ground})$$
                 </div>
+
+                <p>
+                    Training uses token masking scheduling, mixed-precision AMP, label smoothing, and optionally RoPE positional encoding.
+                    The best checkpoint reaches an LPIPS of <strong>~0.44</strong> on held-out pairs, with the VQGAN decoder producing
+                    geometrically consistent aerial reconstructions from street-level input alone.
+                </p>
             </div>
 
           </div>
@@ -241,7 +249,7 @@
                   <i class="bi bi-cpu fs-1" style="color: var(--secondary-accent-color);"></i>
                   <h5 class="mt-2">Autoregressive Generation</h5>
                   <p>$P(s) = \prod_i p(s_i \mid s_{&lt;i}, c_{ground})$</p>
-                  <p>GPT Transformer predicts satellite tokens sequentially, conditioned on the ground-level token sequence.</p>
+                  <p>GPT Transformer predicts satellite tokens sequentially, conditioned on the ground-level token sequence. Supports RoPE positional encoding for improved spatial generalisation.</p>
               </div>
           </div>
 
