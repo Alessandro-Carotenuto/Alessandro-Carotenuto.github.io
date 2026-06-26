@@ -1011,7 +1011,6 @@ section,
   color: rgba(255, 255, 255, 0.8);
 }
 
-.portfolio .portfolio-content .portfolio-info .preview-link,
 .portfolio .portfolio-content .portfolio-info .details-link,
 .portfolio .portfolio-content .portfolio-info .github-link
  {
@@ -1023,26 +1022,20 @@ section,
   line-height: 1.2;
 }
 
-/* Preview icon - left */
-.portfolio .portfolio-content .portfolio-info .preview-link {
-  left: calc(50% - 64px);
-}
-
-/* Details icon - center */
+/* Details icon - left of center */
 .portfolio .portfolio-content .portfolio-info .details-link {
-  left: calc(50% - 20px);
+  left: calc(50% - 44px);
   top: calc(50% - 16px);
   font-size: 34px;
   line-height: 0;
 }
 
-/* Github icon - right */
+/* Github icon - right of center */
 .portfolio .portfolio-content .portfolio-info .github-link {
-  left: calc(50% + 36px);
-  font-size: 28;
+  left: calc(50% + 10px);
+  font-size: 28px;
 }
 
-.portfolio .portfolio-content .portfolio-info .preview-link:hover,
 .portfolio .portfolio-content .portfolio-info .details-link:hover,
 .portfolio .portfolio-content .portfolio-info .github-link:hover
 {

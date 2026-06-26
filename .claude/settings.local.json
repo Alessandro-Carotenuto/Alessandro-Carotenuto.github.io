@@ -14,7 +14,8 @@
       "Bash(del \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_reward_calc.py\")",
       "Bash(del \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_episode_log.txt\")",
       "PowerShell(Get-Content \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_log2.txt\" | & \"C:\\\\Users\\\\alex1\\\\anaconda3\\\\python.exe\" \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_reward_calc.py\")",
-      "PowerShell(Get-Content \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_log3.txt\" | & \"C:\\\\Users\\\\alex1\\\\anaconda3\\\\python.exe\" \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_reward_calc.py\")"
+      "PowerShell(Get-Content \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_log3.txt\" | & \"C:\\\\Users\\\\alex1\\\\anaconda3\\\\python.exe\" \"C:\\\\Users\\\\alex1\\\\Documents\\\\Cloned Repositories\\\\RL-2025-Learning-World-Graphs-to-Accelerate-Hierarchical-Reinforcement-Learning-Project\\\\tmp_reward_calc.py\")",
+      "PowerShell(Set-Content *)"
     ]
   }
 }
