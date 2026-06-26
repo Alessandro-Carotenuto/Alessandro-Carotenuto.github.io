@@ -98,7 +98,7 @@
 
       <!-- Section Title -->
       <div class="container section-title-small" data-aos="fade-up">
-        <h2>World-Graph VAE generation to improve Hierarchical Reinforcement Learning</h2>
+        <h2>Hierarchical RL with Learned World Graph for Navigation</h2>
       </div><!-- End Section Title -->
     
 
@@ -180,24 +180,54 @@
                   </li>
                 </ul>
               </div>
-              <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
-                <h2>Overview</h2>
-                <p>
-                  This project implements a three-phase framework to accelerate Hierarchical Reinforcement Learning in sparse-reward environments.
-                  A <strong>Hard-Kumaraswamy VAE</strong> first explores the environment unsupervised, identifying topological bottleneck states —
-                  <em>pivotal states</em> — used to build a <strong>World Graph</strong> of reachable transitions.
-                </p>
+            </div>
 
-                <div style="font-size: 0.8rem; text-align: center; margin: 15px 0;">
-                  $$\mathcal{G} = (\mathcal{P}, \mathcal{E}) \text{ where } \mathcal{P} \text{ are Pivotal States}$$
+            <!-- Stats Row -->
+            <div class="col-12 mt-4">
+              <div class="row gy-3 text-center">
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">X%</h2>
+                    <p class="mb-0">Success Rate over 1,000 Eval Episodes</p>
+                  </div>
                 </div>
-
-                <p>
-                  A structured pretrain pipeline then trains a graph-aware Worker and a two-headed Manager independently,
-                  before integrating them: the Manager selects high-level goals from the graph; the Worker reaches them
-                  through a finite-state machine combining Dijkstra graph traversal and local MLP navigation.
-                </p>  
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">Y</h2>
+                    <p class="mb-0">Avg Reward &nbsp;·&nbsp; 5.59 Theoretical Max</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">Z <span style="font-size: 0.5em; font-weight: 500;">Steps</span> / Z/33.4 s</h2>
+                    <p class="mb-0">Avg Steps to Completion</p>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div class="portfolio-description">
+              <h2>Overview</h2>
+              <p>
+                Reimagined and rebuilt from scratch, inspired by <a href="https://arxiv.org/abs/1907.00664" target="_blank">Shang et al. (2019)</a>.
+                The original paper proposes a general HRL framework; this project reconstructs and substantially extends its core ideas
+                for the <strong>MultiGoal</strong> task, introducing an original Wide-then-Narrow goal-selection scheme,
+                a three-state Worker FSM, and a full pretraining pipeline developed from scratch.
+              </p>
+              <p>
+                A <strong>Hard-Kumaraswamy VAE</strong> explores the environment unsupervised, identifying topological bottleneck states —
+                <em>pivotal states</em> — used to build a <strong>World Graph</strong> of reachable transitions.
+              </p>
+
+              <div style="font-size: 0.8rem; text-align: center; margin: 15px 0;">
+                $$\mathcal{G} = (\mathcal{P}, \mathcal{E}) \text{ where } \mathcal{P} \text{ are Pivotal States}$$
+              </div>
+
+              <p>
+                A structured pretrain pipeline then trains a graph-aware Worker and a two-headed Manager independently,
+                before integrating them: the Manager selects high-level goals from the graph; the Worker reaches them
+                through a finite-state machine combining Dijkstra graph traversal and local MLP navigation.
+              </p>
             </div>
 
           </div>
