@@ -197,25 +197,20 @@ if (canvas) {
     return camera.position.clone().add(dir.multiplyScalar(distance));
   }
 
-  // Slot positions are cached relative to the hero box and only recomputed on
-  // resize/layout change - never read live during the render loop, so
-  // scrolling the page (which only moves the hero within the viewport, not
-  // within itself) can't perturb the icons.
-  function updateNavSlotOffsets() {
-    if (!navSpheres.length || !hero) return;
-    const heroRect = hero.getBoundingClientRect();
-    navSpheres.forEach((state) => {
-      const slotRect = state.slot.getBoundingClientRect();
-      state.localX = slotRect.left - heroRect.left + slotRect.width / 2;
-      state.localY = slotRect.top - heroRect.top + slotRect.height / 2;
-    });
-  }
-
   function updateNavSpheres(delta) {
     if (!navSpheres.length) return;
+    // Read each slot's position live every frame, relative to the hero box
+    // (not the viewport, so page scroll can't perturb it). Cheap for 4
+    // elements, and it sidesteps every load-order race - fonts finishing
+    // late, flex-wrap changing after first paint, whatever - since there is
+    // no cached value that can ever go stale.
+    const heroRect = hero ? hero.getBoundingClientRect() : null;
     navSpheres.forEach((state) => {
-      if (state.localX !== undefined) {
-        state.mesh.position.copy(localToWorld(state.localX, state.localY, 3));
+      if (heroRect) {
+        const slotRect = state.slot.getBoundingClientRect();
+        const localX = slotRect.left - heroRect.left + slotRect.width / 2;
+        const localY = slotRect.top - heroRect.top + slotRect.height / 2;
+        state.mesh.position.copy(localToWorld(localX, localY, 3));
       }
 
       const target = state.hovering ? 1 : 0;
@@ -243,26 +238,9 @@ if (canvas) {
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
     renderer.setSize(width, height, false);
-    updateNavSlotOffsets();
   }
   resize();
   window.addEventListener('resize', resize);
-
-  // Font loads, text-driven flex-wrap changes, orientation changes, dynamic
-  // mobile viewport chrome... any of these can shift where the nav labels
-  // actually land after the first paint. Rather than guess at timings,
-  // watch the real layout and re-measure whenever it actually changes.
-  if (hero && navSpheres.length && 'ResizeObserver' in window) {
-    const resizeObserver = new ResizeObserver(() => updateNavSlotOffsets());
-    resizeObserver.observe(hero);
-    navSpheres.forEach((state) => resizeObserver.observe(state.slot));
-  } else {
-    window.addEventListener('load', updateNavSlotOffsets);
-    setTimeout(updateNavSlotOffsets, 600);
-  }
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(updateNavSlotOffsets);
-  }
 
   let running = true;
   if ('IntersectionObserver' in window && hero) {
