@@ -247,10 +247,22 @@ if (canvas) {
   }
   resize();
   window.addEventListener('resize', resize);
-  // AOS fade-in / web font swaps can shift the label layout slightly after
-  // the first paint; re-measure once things settle.
-  window.addEventListener('load', updateNavSlotOffsets);
-  setTimeout(updateNavSlotOffsets, 600);
+
+  // Font loads, text-driven flex-wrap changes, orientation changes, dynamic
+  // mobile viewport chrome... any of these can shift where the nav labels
+  // actually land after the first paint. Rather than guess at timings,
+  // watch the real layout and re-measure whenever it actually changes.
+  if (hero && navSpheres.length && 'ResizeObserver' in window) {
+    const resizeObserver = new ResizeObserver(() => updateNavSlotOffsets());
+    resizeObserver.observe(hero);
+    navSpheres.forEach((state) => resizeObserver.observe(state.slot));
+  } else {
+    window.addEventListener('load', updateNavSlotOffsets);
+    setTimeout(updateNavSlotOffsets, 600);
+  }
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(updateNavSlotOffsets);
+  }
 
   let running = true;
   if ('IntersectionObserver' in window && hero) {
