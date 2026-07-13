@@ -74,11 +74,30 @@
       <!-- Hero Section -->
       <section id="coverpage" class="hero section dark-background">
 
-        <img src="assets/img/COVER.jpg" alt="" data-aos="fade-in" class="">
+        <canvas id="hero-canvas" aria-hidden="true"></canvas>
 
         <div class="container" data-aos="fade-up" data-aos-delay="100">
           <h2>Alessandro Carotenuto</h2>
           <p>I'm <span class="typed" data-typed-items="a MSc Student in AI and Robotics , a BSc Computer and Automation Engineer Graduate"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span><span class="typed-cursor typed-cursor--blink" aria-hidden="true"></span></p>
+
+          <nav class="hero-nav" id="hero-nav" aria-label="Section navigation">
+            <a href="#about" class="hero-nav-item">
+              <span class="hero-nav-slot" data-hero-slot="0" aria-hidden="true"></span>
+              <span class="hero-nav-label">About</span>
+            </a>
+            <a href="#resume" class="hero-nav-item">
+              <span class="hero-nav-slot" data-hero-slot="1" aria-hidden="true"></span>
+              <span class="hero-nav-label">Resume</span>
+            </a>
+            <a href="#portfolio" class="hero-nav-item">
+              <span class="hero-nav-slot" data-hero-slot="2" aria-hidden="true"></span>
+              <span class="hero-nav-label">Portfolio</span>
+            </a>
+            <a href="#contact" class="hero-nav-item">
+              <span class="hero-nav-slot" data-hero-slot="3" aria-hidden="true"></span>
+              <span class="hero-nav-label">Contact</span>
+            </a>
+          </nav>
         </div>
 
       </section><!-- /Hero Section -->
@@ -128,8 +147,8 @@
               <i class="bi bi-code-slash fs-1" style="color: #2e7d32"></i>
               <div>
                 <h3 class="mb-1 fw-bold" style="font-size: 1.3rem;">Programming</h3>
-                <p class="mb-0 text-secondary" style="font-size: 0.9rem; line-height: 1.2;"><h4 class="cat-tag">Python</h4> 
-                  <h4 class="cat-tag">Java</h4> <h4 class="cat-tag">C++</h4> <h4 class="cat-tag">MATLAB</h4> <h4 class="cat-tag">LaTeX</h4> 
+                <p class="mb-0 text-secondary" style="font-size: 0.9rem; line-height: 1.2;"><h4 class="cat-tag">Python</h4>
+                  <h4 class="cat-tag">Java</h4> <h4 class="cat-tag">C++</h4> <h4 class="cat-tag">JavaScript</h4> <h4 class="cat-tag">MATLAB</h4> <h4 class="cat-tag">LaTeX</h4>
                   </p>
               </div>
             </div>
@@ -141,9 +160,16 @@
               <i class="bi bi-cpu fs-1" style="color: #6a1b9a"></i>
               <div>
                 <h3 class="mb-1 fw-bold" style="font-size: 1.3rem;">Tools & Libraries</h3>
-                <p class="mb-0 text-secondary" style="font-size: 0.9rem; line-height: 1.2;"><h4 class="cat-tag">PyTorch</h4> 
-                  <h4 class="cat-tag">HuggingFace</h4> <h4 class="cat-tag">OpenCV</h4> <h4 class="cat-tag">scikit-learn</h4> 
-                  <h4 class="cat-tag">NumPy</h4> <h4 class="cat-tag">MatplotLib</h4> <h4 class="cat-tag">SymPy</h4> <h4 class="cat-tag">WandB</h4> <h4 class="cat-tag">Git</h4></p>
+                <div style="display: grid; grid-template-columns: 48px 1fr; row-gap: 2px; column-gap: 6px; align-items: center;">
+                  <div class="text-secondary fw-semibold" style="font-size: 0.7rem;">ML/DS</div>
+                  <div class="d-flex flex-wrap gap-1" style="--tag-fs: 12px; --tag-pad: 2px 6px;">
+                    <h4 class="cat-tag m-0" style="font-size: var(--tag-fs); padding: var(--tag-pad);">PyTorch</h4> <h4 class="cat-tag m-0" style="font-size: var(--tag-fs); padding: var(--tag-pad);">HuggingFace</h4> <h4 class="cat-tag m-0" style="font-size: var(--tag-fs); padding: var(--tag-pad);">scikit-learn</h4> <h4 class="cat-tag m-0" style="font-size: var(--tag-fs); padding: var(--tag-pad);">NumPy</h4> <h4 class="cat-tag m-0" style="font-size: var(--tag-fs); padding: var(--tag-pad);">MatplotLib</h4> <h4 class="cat-tag m-0" style="font-size: var(--tag-fs); padding: var(--tag-pad);">SymPy</h4> <h4 class="cat-tag m-0" style="font-size: var(--tag-fs); padding: var(--tag-pad);">WandB</h4>
+                  </div>
+                  <div class="text-secondary fw-semibold" style="font-size: 0.7rem;">Web/Dev</div>
+                  <div class="d-flex flex-wrap gap-1">
+                    <h4 class="cat-tag m-0" style="font-size: 12px; padding: 2px 6px;">Three.js</h4> <h4 class="cat-tag m-0" style="font-size: 12px; padding: 2px 6px;">Git</h4>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -404,7 +430,10 @@
 
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ROBO">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/portfolio/multirobot.gif" class="img-fluid" alt="">
+                  <video class="img-fluid" autoplay loop muted playsinline>
+                    <source src="assets/img/portfolio/multirobot.webm" type="video/webm">
+                    <source src="assets/img/portfolio/multirobot.mp4" type="video/mp4">
+                  </video>
                   <div class="portfolio-info">
                     <h4>Multi-Robot</h4><h4>Distributed Systems</h4>
                     <p>Distributed Collision Avoidance & <br> Connectivity Maintenance for  <br> Multi-Robot Systems</p>
@@ -416,7 +445,10 @@
 
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-ROBO">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/portfolio/quadrotor.gif" class="img-fluid" alt="">
+                  <video class="img-fluid" autoplay loop muted playsinline>
+                    <source src="assets/img/portfolio/quadrotor.webm" type="video/webm">
+                    <source src="assets/img/portfolio/quadrotor.mp4" type="video/mp4">
+                  </video>
                   <div class="portfolio-info">
                     <h4>Quadrotor Control</h4><h4>Computer Vision</h4>
                     <p>Autonomous Quadrotor Vision-Based <br> Tracking & Landing</p>
@@ -428,7 +460,10 @@
 
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-AI">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/portfolio/reinforce.gif" class="img-fluid" alt="">
+                  <video class="img-fluid" autoplay loop muted playsinline>
+                    <source src="assets/img/portfolio/reinforce.webm" type="video/webm">
+                    <source src="assets/img/portfolio/reinforce.mp4" type="video/mp4">
+                  </video>
                   <div class="portfolio-info">
                     <h4>Reinforcement Learning</h4><h4>Unsupervised Learning</h4>
                     <p>Hierarchical RL with Learned World Graph for Navigation</p>
@@ -440,7 +475,10 @@
 
               <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-AI">
                 <div class="portfolio-content h-100">
-                  <img src="assets/img/portfolio/detailed/COVER G2A.gif" class="fit-height" alt="">
+                  <video class="fit-height" autoplay loop muted playsinline>
+                    <source src="assets/img/portfolio/detailed/COVER G2A.webm" type="video/webm">
+                    <source src="assets/img/portfolio/detailed/COVER G2A.mp4" type="video/mp4">
+                  </video>
                   <div class="portfolio-info">
                     <h4>Computer Vision</h4><h4>Transformers</h4>
                     <p>Ground-to-Aerial Image Synthesis with VQ-GAN and Transformers </p>
@@ -462,7 +500,23 @@
                   </div>
                 </div>
               </div><!-- End Portfolio Item -->
-              
+
+              <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-SD">
+                <div class="portfolio-content h-100">
+                  <video class="fit-height" autoplay loop muted playsinline>
+                    <source src="assets/img/portfolio/mechabasketball.webm" type="video/webm">
+                    <source src="assets/img/portfolio/mechabasketball.mp4" type="video/mp4">
+                  </video>
+                  <span class="play-tag">Play it here!</span>
+                  <div class="portfolio-info">
+                    <h4>JavaScript</h4><h4>Three.js</h4><h4>Game Development</h4>
+                    <p>Mecha-Basketball 3D Game <br> Procedural Robots & Physics-Based Basketball</p>
+                    <a href="portfolio pages/mechabasketball.html" title="More Details" class="details-link"><i class="bi bi-card-list"></i></a>
+                    <a href="https://sapienzainteractivegraphicscourse.github.io/final-project-intentionallyblankname/" title="Play Live Demo" target="_blank" rel="noopener" class="play-link"><i class="bi bi-controller"></i></a>
+                    <a href="https://github.com/SapienzaInteractiveGraphicsCourse/final-project-intentionallyblankname" title="Github" class="github-link"><i class="bi bi-github"></i></a>
+                  </div>
+                </div>
+              </div><!-- End Portfolio Item -->
 
 
 
@@ -657,6 +711,17 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+
+    <!-- Hero Three.js scene (ES module, needs SVGLoader for the nav icons) -->
+    <script type="importmap">
+    {
+      "imports": {
+        "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+        "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+      }
+    }
+    </script>
+    <script type="module" src="assets/js/hero-three.js"></script>
 
   </body>
 

@@ -560,13 +560,15 @@ section,
   width: 100%;
   min-height: 100vh;
   position: relative;
-  padding: 80px 0;
+  padding: 140px 0 80px;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
 }
 
-.hero img {
+.hero img,
+.hero canvas {
   position: absolute;
   inset: 0;
   display: block;
@@ -587,6 +589,7 @@ section,
 .hero .container {
   position: relative;
   z-index: 3;
+  text-align: center;
 }
 
 .hero h2 {
@@ -631,6 +634,64 @@ section,
 
   .hero p {
     font-size: 20px;
+  }
+}
+
+.hero-nav {
+  display: flex;
+  width: 100%;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 12vh;
+}
+
+.hero-nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 44px;
+  text-decoration: none;
+  outline: none;
+}
+
+.hero-nav-slot {
+  display: block;
+  width: 140px;
+  height: 140px;
+  pointer-events: none;
+}
+
+.hero-nav-label {
+  font-size: 18px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: color-mix(in srgb, var(--default-color), transparent 35%);
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.8);
+  transition: color 0.3s, text-shadow 0.3s;
+}
+
+.hero-nav-item:hover .hero-nav-label,
+.hero-nav-item:focus-visible .hero-nav-label {
+  color: var(--accent-color);
+  text-shadow: 0 0 12px color-mix(in srgb, var(--accent-color), transparent 30%);
+}
+
+.hero-nav-item:focus-visible {
+  box-shadow: 0 0 0 2px color-mix(in srgb, var(--accent-color), transparent 40%);
+  border-radius: 6px;
+}
+
+@media (max-width: 576px) {
+  .hero-nav {
+    gap: 24px;
+    margin-top: 40px;
+  }
+
+  .hero-nav-slot {
+    width: 100px;
+    height: 100px;
   }
 }
 
@@ -881,7 +942,9 @@ section,
 }
 
 
-.portfolio .portfolio-content img {
+.portfolio .portfolio-content img,
+.portfolio .portfolio-content video {
+  display: block;           /* video defaults to inline and reserves baseline gap that img doesn't (Bootstrap only resets img/svg) */
   transition: 0.3s;
   width: 100%;
   height: 250px;            /*fixed height for all portfolio items to maintain a consistent grid layout*/
@@ -889,9 +952,9 @@ section,
   border: 2px solid var(--accent-color);
 }
 
-.portfolio .portfolio-content img.fit-height {
-  object-fit: contain;
-  background-color: #FFF;
+.portfolio .portfolio-content img.fit-height,
+.portfolio .portfolio-content video.fit-height {
+  object-fit: cover;
 }
 
 .portfolio .portfolio-content img.thesiswork {
@@ -931,6 +994,22 @@ section,
   bottom: 8px;
   right: 8px;
   background-color: #006c1fe7;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 2;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
+.portfolio .portfolio-content .play-tag {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background-color: var(--accent-color);
   color: #ffffff;
   font-size: 11px;
   font-weight: 700;
@@ -998,8 +1077,29 @@ section,
   font-size: 28px;
 }
 
+/* Play/live-demo icon - only present on items that offer a playable build */
+.portfolio .portfolio-content .portfolio-info .play-link {
+  position: absolute;
+  font-size: 28px;
+  top: calc(50% - 14px);
+  color: #fff;
+  transition: 0.3s;
+  line-height: 1.2;
+  left: calc(50% - 14px);
+}
+
+/* When a play-link is present, spread the three icons evenly */
+.portfolio .portfolio-content .portfolio-info:has(.play-link) .details-link {
+  left: calc(50% - 62px);
+}
+
+.portfolio .portfolio-content .portfolio-info:has(.play-link) .github-link {
+  left: calc(50% + 34px);
+}
+
 .portfolio .portfolio-content .portfolio-info .details-link:hover,
-.portfolio .portfolio-content .portfolio-info .github-link:hover
+.portfolio .portfolio-content .portfolio-info .github-link:hover,
+.portfolio .portfolio-content .portfolio-info .play-link:hover
 {
   color: var(--accent-color);
 }
@@ -1009,7 +1109,8 @@ section,
   opacity: 1;
 }
 
-.portfolio .portfolio-content:hover img {
+.portfolio .portfolio-content:hover img,
+.portfolio .portfolio-content:hover video {
   transform: scale(1.1);
 }
 
@@ -1334,7 +1435,8 @@ section,
 
 /* Portfolio details slider */
 
-.portfolio-details .portfolio-details-slider img {
+.portfolio-details .portfolio-details-slider img,
+.portfolio-details .portfolio-details-slider video {
   width: 100%;
 }
 
