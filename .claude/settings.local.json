@@ -20,7 +20,8 @@
       "Read(//c/Users/alex1/Documents/**)",
       "Bash(dir \"C:\\\\Users\\\\alex1\\\\Documents\")",
       "Bash(curl *)",
-      "Bash(python3 -c ' *)"
+      "Bash(python3 -c ' *)",
+      "WebFetch(domain:alessandro-carotenuto.github.io)"
     ]
   }
 }
