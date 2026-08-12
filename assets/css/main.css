@@ -857,6 +857,11 @@ section,
   border: 2px solid var(--accent-color);
 }
 
+.border-limit 
+{
+  border: 0.5px solid var(--default-color);
+}
+
 
 .current-tag {
   position: absolute;
