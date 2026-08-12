@@ -189,19 +189,31 @@
             <div class="col-12 mt-4">
               <div class="row gy-3 text-center">
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit stat-popup" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="CBF-Based Controllers"
+                       data-bs-content="Three ways the robots can be told to avoid each other:<br><strong>Centralized:</strong> one computer plans for everyone, optimal but doesn't scale.<br><strong>Decentralized:</strong> each robot decides using only its nearby neighbors, scalable but short-sighted.<br><strong>Distributed:</strong> like decentralized, but robots also estimate together how well-connected the swarm is (&lambda;&#8322;), so they don't drift apart.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">3</h2>
                     <p class="mb-0">CBF-Based Controllers</p>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit stat-popup" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Swarm"
+                       data-bs-content="<strong>5 simulated robots</strong>, each solving its own small optimization problem to move safely and reach its goal, while passing information to robots <strong>several hops away</strong> across the network.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">5</h2>
                     <p class="mb-0">Robots in the Swarm</p>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit stat-popup" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Obstacles"
+                       data-bs-content="The swarm was tested across scenes with a <strong>growing number of randomly placed obstacles</strong>, up to <strong>42</strong> at once, to check that robots stay safe as the environment gets more crowded.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">42</h2>
                     <p class="mb-0">Obstacles in Dense Scenario</p>
                   </div>
@@ -220,6 +232,7 @@
       <section id="project-pillars" class="project-pillars section">
       <!-- Section Title -->
         <div class="container section-title-small" data-aos="fade-up">
+          <br>
           <h2>Key Elements</h2>
         </div><!-- End Section Title -->
         
@@ -231,16 +244,16 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-link-45deg fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Swarm Intelligence</h5>
-                <p>5 double-integrator agents coordinate via local QP solvers to reach individual goals while satisfying shared safety constraints.</p>
+                <p><strong>5 double-integrator robots</strong> avoid collisions on their own, each solving a <strong>local QP</strong> every step.</p>
               </div>
           </div><!-- End Info Item  -->
 
-          
+
           <div class="col-lg-3 col-md-6">
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-broadcast fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Multi-Hop Networking</h5>
-                <p>Position and $\lambda_2$ estimates propagate across the graph via multi-hop relaying with confidence decay and message timeout.</p>
+                <p>Position and connectivity ($\lambda_2$) estimates are <strong>relayed hop-by-hop</strong> across the graph, with <strong>confidence decay</strong> to drop stale data.</p>
               </div>
           </div><!-- End Info Item  -->
 
@@ -248,7 +261,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-bounding-box-circles fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Spectral Topology</h5>
-                <p>Real-time analysis of the swarm's Laplacian matrix, $\lambda_2(L)>0$ to preserve network cohesion</p>
+                <p>The swarm's connectivity is tracked live through the graph's <strong>Laplacian matrix</strong>, checking $\lambda_2(L)>0$.</p>
               </div>
           </div><!-- End Info Item  -->
 
@@ -257,7 +270,7 @@
                 <i class="bi bi-shield-check fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Control Barrier Functions</h5>
                 <p>$\dot{h} \ge -\gamma h$</p>
-                <p>Enforcing hard mathematical constraints on the system's state space.</p>
+                <p>A <strong>safety margin</strong> $h$ is kept from shrinking too fast, guaranteeing the swarm stays safe (not just locally).</p>
               </div>
           </div><!-- End Info Item  -->
 
@@ -388,6 +401,10 @@
       nextEl: '.portfolio-details-slider .swiper-button-next',
       prevEl: '.portfolio-details-slider .swiper-button-prev'
     }
+  });
+
+  document.querySelectorAll('.stat-popup[data-bs-toggle="popover"]').forEach(function (el) {
+    new bootstrap.Popover(el, { trigger: 'focus' });
   });
 </script>
 

@@ -193,7 +193,7 @@
             <i class="bi bi-diagram-2 fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Autograd Engine</h5>
             <p>$$\frac{d\mathcal{L}}{dx_i} = \sum_j \frac{d\mathcal{L}}{dy_j} \cdot \frac{\partial y_j}{\partial x_i}$$</p>
-            <p>Dynamic computation graph with reverse-mode AD. Each <code>GradTensor</code> stores its backward function; <code>backward()</code> traverses nodes in reverse topological order to accumulate exact gradients.</p>
+            <p>Gradients are computed automatically via <strong>reverse-mode autodiff</strong>. Every <code>GradTensor</code> remembers its backward function, replayed by a single <code>backward()</code> call.</p>
           </div>
         </div>
 
@@ -202,7 +202,7 @@
             <i class="bi bi-layers fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Neural Network Stack</h5>
             <p>$$\theta \leftarrow \theta - \eta \nabla_\theta \mathcal{L}$$</p>
-            <p>Linear layers, ReLU / Sigmoid / Softmax activations, MSE and Cross-Entropy loss, SGD optimizer with gradient clipping. Full training loop validated on <strong>MNIST</strong>.</p>
+            <p>A minimal training toolkit: <strong>linear layers</strong>, ReLU/Sigmoid/Softmax, MSE/Cross-Entropy loss, <strong>SGD with gradient clipping</strong>, validated end-to-end on MNIST.</p>
           </div>
         </div>
 
@@ -210,7 +210,7 @@
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
             <i class="bi bi-tree fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Classic ML Suite</h5>
-            <p>Linear &amp; Logistic Regression, KNN, CART Decision Tree, Random Forest, SVM, PCA/SVD — all behind a unified <code>fit() / predict() / score()</code> API with k-fold cross-validation and standard metrics.</p>
+            <p>The pre-deep-learning classics, reimplemented from scratch: <strong>Regression, KNN, Decision Trees, Random Forest, SVM, PCA</strong>, behind a unified <code>fit()/predict()/score()</code> API.</p>
           </div>
         </div>
 
@@ -218,7 +218,7 @@
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
             <i class="bi bi-box-seam fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Python Bindings & Distribution</h5>
-            <p>Full pybind11 bindings expose tensors, layers, optimizers, and ML algorithms to Python. Distributed as a <strong>pip-installable package</strong> and supports <strong>ONNX export</strong> for cross-runtime inference.</p>
+            <p>The C++ core is callable directly from Python, no rewrite needed, via <strong>pybind11</strong>. Ships as a <strong>pip-installable package</strong> with <strong>ONNX export</strong>.</p>
           </div>
         </div>
 

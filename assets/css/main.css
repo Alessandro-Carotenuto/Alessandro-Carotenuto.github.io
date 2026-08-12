@@ -814,8 +814,6 @@ section,
   position: relative;
 }
 
-
-
 .resume .resume-item h4 {
   line-height: 18px;
   font-size: 18px;
@@ -857,10 +855,15 @@ section,
   border: 2px solid var(--accent-color);
 }
 
+
+
 .border-limit 
 {
   border: 0.5px solid var(--default-color);
+  transition: 0.2s;
 }
+
+
 
 
 .current-tag {
@@ -1363,6 +1366,18 @@ section,
 .contact .php-email-form input[type=email]::placeholder,
 .contact .php-email-form textarea::placeholder {
   color: color-mix(in srgb, var(--default-color), transparent 70%);
+}
+
+/*--------------------------------------------------------------
+# Stat Popups
+--------------------------------------------------------------*/
+.stat-popup {
+  cursor: pointer;
+}
+
+.stat-popover {
+  --bs-popover-max-width: 320px;
+  font-size: 0.95rem;
 }
 
 .contact .php-email-form button[type=submit] {

@@ -174,19 +174,31 @@
             <div class="col-12 mt-4">
               <div class="row gy-3 text-center">
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 stat-popup border-limit" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Success Rate"
+                       data-bs-content="Out of 5,000 test episodes across 5 different maze layouts, the Manager+Worker agent reached <strong>all 5 goals</strong> 72.5% of the time, and at least <strong>4 out of 5</strong> goals 86.8% of the time, within a 10,000-step budget per episode.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">72.5% <span style="font-size: 0.5em; font-weight: 500;">reached all 5 goals</span><br>86.8% <span style="font-size: 0.5em; font-weight: 500;">reached 4+ goals</span></h2>
                     <p class="mb-0">Success Rate in 10,000 Steps<br>(5,000 Ep., Across 5 layouts)</p>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 stat-popup border-limit" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Avg Reward"
+                       data-bs-content="Average reward per episode, a measure of how efficiently the agent reaches its goals. The <strong>theoretical max</strong> (5.59) is the score of an agent reaching every goal in the fewest possible steps; the agent averaged <strong>4.87</strong>.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">4.87</h2>
                     <p class="mb-0">Avg Reward out of 5.59 Theoretical Max<br>(5,000 Ep., Across 5 layouts)</p>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 stat-popup border-limit" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Steps to Completion"
+                       data-bs-content="On average an episode took <strong>3,656 steps</strong> (about <strong>61 s</strong> of simulated time) to finish or time out. Episodes that didn't complete within the 10,000-step budget are counted as the full 10,000, so this average blends fast successes with some incomplete runs.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">3,656 <span style="font-size: 0.5em; font-weight: 500;">Steps</span> / 61.1 <span style="font-size: 0.5em; font-weight: 500;">s</span></h2>
                     <p class="mb-0">Avg Steps / Seconds to Completion<br>(5,000 Ep., Across 5 layouts)<br><span style="font-size: 0.85em; color: #888;">(10k steps counted if not completed)</span></p>
                   </div>
@@ -240,7 +252,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-search fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Pivotal State Discovery</h5>
-                <p>An unsupervised process to detect informative states that capture the structural essence of the environment.</p>
+                <p><strong>Informative (pivotal) states</strong> about the environment are detected via <strong>unsupervised learning</strong>, with a Hard-Kumaraswamy VAE.</p>
               </div>
           </div><!-- End Info Item  -->
 
@@ -249,7 +261,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-mortarboard fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Structured Pretrain Pipeline</h5>
-                <p style="font-size: 0.83rem;">Worker trained on progressive radius stages with Prioritized Experience Replay; edges refined post-pretrain. Manager Wide and Narrow heads pretrained independently before integration.</p>
+                <p>Worker and Manager are <strong>pretrained separately</strong> before being combined, so each starts competent. The Worker uses <strong>Prioritized Experience Replay</strong> over progressive radius stages.</p>
               </div>
           </div><!-- End Info Item  -->
 
@@ -258,7 +270,7 @@
                 <i class="bi bi-diagram-3 fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">World Graph Construction</h5>
                 <p>$$\mathcal{G} = (\mathcal{P}, \mathcal{E})$$</p>
-                <p>Building a task-agnostic map with pivotal states and feasible transitions </p>
+                <p>A <strong>task-agnostic map</strong> is built from pivotal states, linked by <strong>feasible transitions</strong> the agent has verified.</p>
               </div>
           </div><!-- End Info Item  -->
 
@@ -267,7 +279,7 @@
                 <i class="bi bi-layers fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Wide-then-Narrow Goal Selection</h5>
                   <p style="font-size: 0.7rem;">$\mathcal{L} = \mathbb{E}[\hat{A}\log\pi_\theta(a|s,g)] - \beta\,\mathcal{H}[\pi_\theta]$</p>
-                <p style="font-size: 0.83rem;">A2C-LSTM Manager picks a graph pivot (wide goal), then a Manhattan diamond cell around it (narrow goal). Worker reaches it via FSM: Dijkstra traversal, then local MLP navigation.</p>
+                <p>The <strong>Manager</strong> picks goals in two steps: a rough pivot, then a precise cell around it. The <strong>Worker</strong> reaches it via Dijkstra traversal plus local MLP navigation.</p>
               </div>
           </div><!-- End Info Item  -->
 
@@ -398,6 +410,10 @@
       nextEl: '.portfolio-details-slider .swiper-button-next',
       prevEl: '.portfolio-details-slider .swiper-button-prev'
     }
+  });
+
+  document.querySelectorAll('.stat-popup[data-bs-toggle="popover"]').forEach(function (el) {
+    new bootstrap.Popover(el, { trigger: 'focus' });
   });
 </script>
 

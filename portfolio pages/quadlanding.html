@@ -173,19 +173,23 @@
             <div class="col-12 mt-4">
               <div class="row gy-3 text-center">
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">~100%</h2>
                     <p class="mb-0">Simulated Landing Success Rate</p>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">&lt; 0.5 m</h2>
                     <p class="mb-0">Position Tracking Error</p>
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit stat-popup" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Trajectories"
+                       data-bs-content="The drone had to track and land on a <strong>moving platform</strong> following 4 different motion patterns: <strong>Stationary</strong>, <strong>Linear</strong>, <strong>Circular</strong> and <strong>Figure-8</strong>, keeping its tracking error under <strong>0.5&nbsp;m</strong> throughout.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">4</h2>
                     <p class="mb-0">Trajectories Validated</p>
                   </div>
@@ -233,7 +237,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-diagram-3 fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Autonomous FSM</h5>
-                <p>Four-state mission logic: <strong>TAKEOFF, SEARCH, FOLLOW, LANDING</strong>, with hysteresis-based transitions for robust mode switching.</p>
+                <p>A <strong>4-state machine</strong> (TAKEOFF, SEARCH, FOLLOW, LANDING) switches modes automatically, with <strong>hysteresis</strong> to avoid flickering.</p>
               </div>
           </div><!-- End Info Item -->
 
@@ -241,7 +245,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-camera-video fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Vision Pipeline</h5>
-                <p>Tag detection via adaptive thresholding + RANSAC, followed by PnP pose recovery. Adaptive FOV expands from 90° to 135° during final descent.</p>
+                <p>The onboard camera finds the tag via adaptive thresholding and <strong>RANSAC</strong>, then recovers its 3D pose with <strong>PnP</strong>. Field of view widens to 135° during final descent.</p>
               </div>
           </div><!-- End Info Item -->
 
@@ -249,7 +253,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-activity fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Kalman + Attitude Gating</h5>
-                <p>Constant-velocity KF for platform state estimation. Measurement updates are gated at $|\phi|, |\theta| > 10^\circ$ to suppress noisy detections during aggressive maneuvers.</p>
+                <p>A <strong>constant-velocity Kalman filter</strong> tracks the moving platform, <strong>gated off above 10° tilt</strong> ($|\phi|, |\theta| > 10^\circ$) to reject noisy detections.</p>
               </div>
           </div><!-- End Info Item -->
 
@@ -257,7 +261,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                 <i class="bi bi-sliders fs-1" style="color: var(--secondary-accent-color);"></i>
                 <h5 class="mt-2">Cascaded PID Control</h5>
-                <p>Outer position loop computes desired thrust and tilt angles; inner attitude loop tracks them via PID with inertia feedforward. Anti-windup on all axes.</p>
+                <p>An <strong>outer position loop</strong> sets the desired tilt and thrust; an <strong>inner attitude loop</strong> tracks them via PID with anti-windup.</p>
               </div>
           </div><!-- End Info Item -->
 
@@ -388,6 +392,10 @@
       nextEl: '.portfolio-details-slider .swiper-button-next',
       prevEl: '.portfolio-details-slider .swiper-button-prev'
     }
+  });
+
+  document.querySelectorAll('.stat-popup[data-bs-toggle="popover"]').forEach(function (el) {
+    new bootstrap.Popover(el, { trigger: 'focus' });
   });
 </script>
 

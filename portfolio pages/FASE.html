@@ -184,7 +184,7 @@
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
             <i class="bi bi-diagram-3 fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Manipulator Modelling</h5>
-            <p>From a joint string, automatically derives the DH kinematic chain, geometric Jacobian, and full Lagrangian dynamics with configurable per-link inertia-tensor assumptions.</p>
+            <p>From a joint string like <code>"RRR"</code>, the toolbox derives the <strong>DH kinematic chain</strong> and <strong>Jacobian</strong>, then the Lagrangian dynamics below.</p>
             <p>$$\tau = M(q)\ddot{q} + c(q,\dot{q}) + G(q)$$</p>
           </div>
         </div>
@@ -193,7 +193,7 @@
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
             <i class="bi bi-calculator fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Kinematic Model Derivation</h5>
-            <p>Builds $\dot{q} = G(q)\,u$ from Pfaffian constraints (null-space method) or from four built-in presets, including a 5-DOF Car-with-Trailer with articulated body rendering.</p>
+            <p>Wheeled-robot motion $\dot{q} = G(q)\,u$ is derived from <strong>Pfaffian rolling constraints</strong>, or picked from <strong>4 built-in presets</strong> including a 5-DOF car-with-trailer.</p>
             <p>$$A^\top(q)\,\dot{q} = 0 \;\Rightarrow\; G = \ker A^\top$$</p>
           </div>
         </div>
@@ -202,7 +202,7 @@
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
             <i class="bi bi-people fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Multi-Robot Simulation</h5>
-            <p>A shared <strong>Environment</strong> runs multiple robots with independent inputs via Euler or RK4, logging all trajectories. The <strong>Displayer</strong> renders them as static or frame-by-frame animated plots.</p>
+            <p>A shared <strong>Environment</strong> steps multiple robots independently (Euler/RK4) and logs every trajectory; the <strong>Displayer</strong> renders them as static or animated plots.</p>
           </div>
         </div>
 
@@ -210,7 +210,7 @@
           <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
             <i class="bi bi-bezier2 fs-1" style="color: var(--secondary-accent-color);"></i>
             <h5 class="mt-2">Controllability Analysis</h5>
-            <p>Computes the involutive closure of the input distribution via iterated Lie brackets, checking whether the control matrix reaches full rank (STLC).</p>
+            <p>Reachability is checked by combining control directions via iterated <strong>Lie brackets</strong> below, until they span the full space (<strong>STLC</strong>).</p>
             <p>$$[g_i,g_j] = \tfrac{\partial g_j}{\partial q}g_i - \tfrac{\partial g_i}{\partial q}g_j$$</p>
           </div>
         </div>

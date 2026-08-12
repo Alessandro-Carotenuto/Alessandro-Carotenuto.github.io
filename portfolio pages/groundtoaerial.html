@@ -220,7 +220,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                   <i class="bi bi-shuffle fs-1" style="color: var(--secondary-accent-color);"></i>
                   <h5 class="mt-2">Cross-View Learning</h5>
-                  <p>Learning the correspondence between ground-level street photos and overhead aerial imagery.</p>
+                  <p>The model learns to relate ground-level street photos to overhead aerial imagery of the same place, purely from <strong>paired examples</strong>, with no explicit geometry given.</p>
               </div>
           </div>
 
@@ -229,7 +229,7 @@
                   <i class="bi bi-grid-3x3-gap fs-1" style="color: var(--secondary-accent-color);"></i>
                   <h5 class="mt-2">VQ-GAN</h5>
                   <p>$z_q = \text{argmin}_{e_k} \|E(x) - e_k\|$</p>
-                  <p>Vector Quantized GAN to encode images into discrete codebook tokens.</p>
+                  <p>Each image is compressed into a small grid of <strong>discrete tokens</strong> rather than raw pixels, via a frozen, pretrained <strong>VQGAN</strong> codebook.</p>
               </div>
           </div>
 
@@ -238,7 +238,7 @@
                   <i class="bi bi-cpu fs-1" style="color: var(--secondary-accent-color);"></i>
                   <h5 class="mt-2">Autoregressive Generation</h5>
                   <p>$P(s) = \prod_i p(s_i \mid s_{&lt;i}, c_{ground})$</p>
-                  <p>GPT Transformer predicts satellite tokens sequentially, conditioned on the ground-level token sequence. Supports RoPE positional encoding for improved spatial generalisation.</p>
+                  <p>The satellite image is generated one token at a time, like a language model, by a <strong>minGPT Transformer</strong> conditioned on the ground-level tokens, optionally with <strong>RoPE</strong>.</p>
               </div>
           </div>
 
@@ -246,7 +246,7 @@
               <div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100">
                   <i class="bi bi-compass fs-1" style="color: var(--secondary-accent-color);"></i>
                   <h5 class="mt-2">Polar Format</h5>
-                  <p>Satellite targets are stored as polar-projected images, aligning their radial structure with the geometry of ground-level panoramic photos.</p>
+                  <p>Satellite targets are reshaped into <strong>polar projection</strong>, lining up their radial structure with the geometry of a ground-level panorama.</p>
               </div>
           </div>
 
