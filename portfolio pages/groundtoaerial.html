@@ -178,14 +178,15 @@
             <div class="portfolio-description" data-aos="fade-up" data-aos-delay="300">
                 <h2>Overview</h2>
                 <p>
+                    Given a street-level photo, the model generates a matching satellite view of the same location, despite the two images looking nothing alike.
                     Cross-view image synthesis is an extreme domain-transfer problem: a ground-level panorama and its corresponding satellite
                     image share the same geographic location but differ completely in viewpoint, scale, and visual structure. No geometric
-                    supervision is available — the model must learn the correspondence purely from paired examples.
+                    supervision is available: the model must learn the correspondence purely from paired examples.
                 </p>
                 <p>
                     The system addresses this with a two-stage <strong>VQGAN-Transformer</strong> pipeline. A pretrained, frozen VQGAN
-                    (ImageNet f16) encodes both views into 16×16 grids of discrete codebook indices — 256 tokens per image. A minGPT
-                    Transformer then learns to autoregressively predict the 256 satellite tokens conditioned on the 256 ground-level tokens,
+                    (ImageNet f16) encodes both views into 16×16 grids of 256 discrete codebook tokens each. A minGPT
+                    Transformer then learns to autoregressively predict the satellite tokens conditioned on the ground-level ones,
                     trained with cross-entropy on 35,191 CVUSA image pairs over 100 epochs:
                 </p>
 

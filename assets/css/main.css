@@ -1373,6 +1373,11 @@ section,
 --------------------------------------------------------------*/
 .stat-popup {
   cursor: pointer;
+  transition: 0.2s;
+}
+
+.stat-popup:hover {
+  border: 2px solid var(--secondary-accent-color);
 }
 
 .stat-popover {

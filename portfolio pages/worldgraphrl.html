@@ -180,7 +180,7 @@
                        data-bs-title="Success Rate"
                        data-bs-content="Out of 5,000 test episodes across 5 different maze layouts, the Manager+Worker agent reached <strong>all 5 goals</strong> 72.5% of the time, and at least <strong>4 out of 5</strong> goals 86.8% of the time, within a 10,000-step budget per episode.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">72.5% <span style="font-size: 0.5em; font-weight: 500;">reached all 5 goals</span><br>86.8% <span style="font-size: 0.5em; font-weight: 500;">reached 4+ goals</span></h2>
-                    <p class="mb-0">Success Rate in 10,000 Steps<br>(5,000 Ep., Across 5 layouts)</p>
+                    <p class="mb-0">Success Rate in 10,000 Steps</p>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -190,7 +190,7 @@
                        data-bs-title="Avg Reward"
                        data-bs-content="Average reward per episode, a measure of how efficiently the agent reaches its goals. The <strong>theoretical max</strong> (5.59) is the score of an agent reaching every goal in the fewest possible steps; the agent averaged <strong>4.87</strong>.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">4.87</h2>
-                    <p class="mb-0">Avg Reward out of 5.59 Theoretical Max<br>(5,000 Ep., Across 5 layouts)</p>
+                    <p class="mb-0">Avg Reward out of 5.59 Theoretical Max</p>
                   </div>
                 </div>
                 <div class="col-md-4">
@@ -200,7 +200,7 @@
                        data-bs-title="Steps to Completion"
                        data-bs-content="On average an episode took <strong>3,656 steps</strong> (about <strong>61 s</strong> of simulated time) to finish or time out. Episodes that didn't complete within the 10,000-step budget are counted as the full 10,000, so this average blends fast successes with some incomplete runs.">
                     <h2 class="fw-bold" style="color: var(--secondary-accent-color);">3,656 <span style="font-size: 0.5em; font-weight: 500;">Steps</span> / 61.1 <span style="font-size: 0.5em; font-weight: 500;">s</span></h2>
-                    <p class="mb-0">Avg Steps / Seconds to Completion<br>(5,000 Ep., Across 5 layouts)<br><span style="font-size: 0.85em; color: #888;">(10k steps counted if not completed)</span></p>
+                    <p class="mb-0">Avg Steps / Seconds to Completion</p>
                   </div>
                 </div>
               </div>
@@ -209,14 +209,15 @@
             <div class="portfolio-description">
               <h2>Overview</h2>
               <p>
+                An RL agent explores a maze-like world on its own, builds a simplified map of it, then uses that map to reach a sequence of goals efficiently.
                 Reimagined and rebuilt from scratch, inspired by <a href="https://arxiv.org/abs/1907.00664" target="_blank">Shang et al. (2019)</a>.
                 The original paper proposes a general HRL framework; this project reconstructs and substantially extends its core ideas
-                for the <strong>MultiGoal</strong> task, introducing an original Wide-then-Narrow goal-selection scheme,
-                a three-state Worker FSM, and a full pretraining pipeline developed from scratch.
+                for the <strong>MultiGoal</strong> task, including its Wide-then-Narrow goal-selection scheme, and adds
+                an original three-state Worker FSM and a pretraining pipeline built from scratch.
               </p>
               <p>
-                A <strong>Hard-Kumaraswamy VAE</strong> explores the environment unsupervised, identifying topological bottleneck states —
-                <em>pivotal states</em> — used to build a <strong>World Graph</strong> of reachable transitions.
+                A <strong>Hard-Kumaraswamy VAE</strong> explores the environment unsupervised, identifying topological bottleneck states
+                (<em>pivotal states</em>) used to build a <strong>World Graph</strong> of reachable transitions.
               </p>
 
               <div style="font-size: 0.8rem; text-align: center; margin: 15px 0;">
@@ -224,8 +225,8 @@
               </div>
 
               <p>
-                A structured pretrain pipeline then trains a graph-aware Worker and a two-headed Manager independently,
-                before integrating them: the Manager selects high-level goals from the graph; the Worker reaches them
+                This pipeline trains a graph-aware Worker and a two-headed Manager independently before integrating them:
+                the Manager selects high-level goals from the graph, and the Worker reaches them
                 through a finite-state machine combining Dijkstra graph traversal and local MLP navigation.
               </p>
             </div>

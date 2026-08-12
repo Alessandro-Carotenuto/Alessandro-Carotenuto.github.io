@@ -200,9 +200,9 @@
             <div class="portfolio-description">
             <h2>Overview</h2>
             <p>
-              Full reimplementation of <a href="https://www.researchgate.net/publication/319244044_Vision-based_Autonomous_Quadrotor_Landing_on_a_Moving_Platform" target="_blank">Falanga et al. (2017)</a>,
-              a complete autonomy pipeline for vision-based quadrotor landing on a moving platform. The system addresses the three core challenges
-              of the problem: <strong>detecting</strong> a visual tag on the target using only onboard camera images, <strong>estimating</strong>
+              A drone autonomously finds, tracks, and lands on a moving platform using only its onboard camera.
+              This is a full reimplementation of <a href="https://www.researchgate.net/publication/319244044_Vision-based_Autonomous_Quadrotor_Landing_on_a_Moving_Platform" target="_blank">Falanga et al. (2017)</a>,
+              addressing the three core challenges of the problem: <strong>detecting</strong> a visual tag on the target using only onboard camera images, <strong>estimating</strong>
               its position and velocity via a Kalman filter with constant-velocity motion model
               $$\hat{\mathbf{x}}_k = \hat{\mathbf{x}}_k^- + K_k\left(z_k - H\hat{\mathbf{x}}_k^-\right)$$
               and <strong>tracking</strong> it through a cascaded PID controller while executing a smooth landing maneuver.
