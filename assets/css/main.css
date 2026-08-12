@@ -1407,6 +1407,59 @@ section,
   margin: 2px 2px;
 }
 
+.skills-tag {
+  display: inline-block;
+  background-color: #7e0000;
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 3px 10px;
+  margin: 2px 2px;
+  transition: 0.1s;
+}
+
+.skills-tag:hover
+{
+  display: inline-block;
+  background-color: var(--accent-color);
+  color: #ffffff;
+  font-size: 12px;
+  font-weight: 400;
+  padding: 3px 10px;
+  margin: 2px 2px;
+}
+
+.skills-tag[data-bs-toggle="popover"] {
+  cursor: pointer;
+}
+
+.popover {
+  --bs-popover-max-width: 280px;
+  --bs-popover-border-color: var(--accent-color);
+  --bs-popover-header-bg: var(--accent-color);
+  --bs-popover-header-color: #fff;
+  font-size: 0.85rem;
+}
+
+.popover-tag-btn {
+  display: inline-block;
+  padding: 3px 9px;
+  margin: 2px 2px 0 0;
+  border: 1px solid var(--accent-color);
+  border-radius: 4px;
+  color: var(--accent-color);
+  background-color: transparent;
+  font-size: 0.85rem;
+  line-height: 1.4;
+  text-decoration: none;
+  transition: 0.2s;
+}
+
+a.popover-tag-btn:hover {
+  background-color: var(--accent-color);
+  color: #fff;
+}
+
 /* Portfolio details slider navigation buttons */
 
 .portfolio-details-slider .swiper-button-prev,

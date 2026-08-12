@@ -38,6 +38,35 @@
   });
 
   /**
+   * Copy email/PEC to clipboard
+   */
+  document.querySelectorAll('.copy-email').forEach(el => {
+    const tooltip = new bootstrap.Tooltip(el, { title: 'Copied!', trigger: 'manual', placement: 'top' });
+
+    function copyEmail() {
+      navigator.clipboard.writeText(el.dataset.copyEmail).then(() => {
+        tooltip.show();
+        setTimeout(() => tooltip.hide(), 1200);
+      });
+    }
+
+    el.addEventListener('click', copyEmail);
+    el.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        copyEmail();
+      }
+    });
+  });
+
+  /**
+   * Skill tag popovers
+   */
+  document.querySelectorAll('.skills-tag[data-bs-toggle="popover"]').forEach(el => {
+    new bootstrap.Popover(el, { trigger: 'focus' });
+  });
+
+  /**
    * Preloader
    */
   const preloader = document.querySelector('#preloader');
