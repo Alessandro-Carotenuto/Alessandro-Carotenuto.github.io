@@ -149,6 +149,42 @@
               </div>
             </div>
 
+            <!-- Stats Row -->
+            <div class="col-12 mt-4">
+              <div class="row gy-3 text-center">
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit stat-popup" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Robot Classes"
+                       data-bs-content="Each class shares the same 3-joint arm but has its own locomotion and special move: <strong>AMR</strong> (wheeled, Dash), <strong>Legged Manipulator</strong> (4-legged, Jump), <strong>Drone</strong> (flying, Flight).">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">3</h2>
+                    <p class="mb-0">Robot Classes</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit stat-popup" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Physics Simulation"
+                       data-bs-content="The dribble and collision simulation runs on a <strong>fixed 120 Hz timestep</strong>, decoupled from the render framerate, so the ball's bounce stays consistent even if the frame rate drops.">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">120 Hz</h2>
+                    <p class="mb-0">Physics Simulation</p>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="info-wrap bg-light rounded shadow-sm p-4 h-100 border-limit stat-popup" tabindex="0"
+                       data-bs-toggle="popover" data-bs-trigger="focus" data-bs-html="true" data-bs-placement="top"
+                       data-bs-custom-class="stat-popover"
+                       data-bs-title="Procedural Parts"
+                       data-bs-content="Every robot is assembled at runtime from primitives, no imported models. The hierarchy grows with complexity: <strong>17 parts</strong> for the AMR, <strong>40</strong> for the Drone, <strong>51</strong> for the 4-legged Manipulator.">
+                    <h2 class="fw-bold" style="color: var(--secondary-accent-color);">17 / 40 / 51</h2>
+                    <p class="mb-0">Parts per Robot<br><span style="font-size: 0.85em; color: #888;">(AMR / Drone / Legged)</span></p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
             <div class="portfolio-description">
               <h2>Overview</h2>
               <p>
@@ -344,6 +380,10 @@
         init: function () { restartActiveVideo(this); },
         slideChangeTransitionEnd: function () { restartActiveVideo(this); }
       }
+    });
+
+    document.querySelectorAll('.stat-popup[data-bs-toggle="popover"]').forEach(function (el) {
+      new bootstrap.Popover(el, { trigger: 'focus' });
     });
   </script>
 
