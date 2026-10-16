@@ -1014,6 +1014,22 @@ section,
   pointer-events: none;
 }
 
+.portfolio .portfolio-content .complete-tag {
+  position: absolute;
+  bottom: 36px;
+  right: 8px;
+  background-color: var(--secondary-accent-color);
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 3px;
+  z-index: 2;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  pointer-events: none;
+}
+
 .portfolio .portfolio-content .play-tag {
   position: absolute;
   bottom: 8px;
