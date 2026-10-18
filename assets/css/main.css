@@ -863,6 +863,96 @@ section,
   transition: 0.2s;
 }
 
+.resume-team-card {
+  position: relative;
+  z-index: 1;
+}
+
+.resume-team-card:hover,
+.resume-team-card:focus-within,
+.resume-team-card.is-pinned {
+  z-index: 5;
+}
+
+.resume-team-info-toggle {
+  align-self: flex-start;
+  flex: 0 0 auto;
+  border: 0;
+  padding: 2px;
+  background: transparent;
+  color: var(--accent-color);
+  font-size: 1.2rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.resume-team-info-toggle:focus-visible {
+  outline: 2px solid var(--accent-color);
+  outline-offset: 3px;
+  border-radius: 50%;
+}
+
+.resume-team-info {
+  position: absolute;
+  top: calc(100% + 8px);
+  right: 0;
+  width: min(420px, 100%);
+  padding: 16px 18px;
+  border: 1px solid color-mix(in srgb, var(--accent-color), transparent 45%);
+  border-radius: 8px;
+  background: var(--surface-color, #fff);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.16);
+  color: var(--default-color);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity 0.18s ease, transform 0.18s ease, visibility 0.18s;
+}
+
+.resume-team-info p {
+  margin: 6px 0;
+}
+
+.resume-team-info-intro {
+  display: grid;
+  grid-template-columns: 120px minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  margin: 8px 0;
+}
+
+.resume-team-info-image {
+  display: block;
+  width: 120px;
+  max-width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.resume-team-info a {
+  display: inline-block;
+  margin-top: 8px;
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.resume-team-card:hover .resume-team-info,
+.resume-team-card:focus-within .resume-team-info,
+.resume-team-card.is-pinned .resume-team-info {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+@media (max-width: 575px) {
+  .resume-team-info {
+    right: -1px;
+    width: calc(100% + 2px);
+  }
+}
+
 
 
 

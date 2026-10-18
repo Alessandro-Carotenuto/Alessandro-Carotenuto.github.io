@@ -216,7 +216,7 @@
 
           <div class="row gy-2 mb-4">
             <div class="col-12">
-              <div class="d-flex align-items-center p-3 bg-light rounded shadow-sm gap-3 border-limit">
+              <div class="d-flex align-items-center p-3 bg-light rounded shadow-sm gap-3 border-limit resume-team-card" data-team-card>
                 <img src="assets/img/sasa-sapienza-technology-team.svg" alt="SaSa: Sapienza Technology Team logo" style="width: 72px; height: 72px; object-fit: contain; flex-shrink: 0;">
                 <div class="d-flex flex-column w-100">
                   <div class="d-flex justify-content-between align-items-start flex-wrap gap-1">
@@ -225,6 +225,18 @@
                   </div>
                   <p class="mb-0 small text-secondary">Rome, Hybrid</p>
                   <ul class="mb-0 small text-secondary"><li>Currently working on the Kelvins <a href="https://kelvins.esa.int/lunar-x-view/challenge/" target="_blank" rel="noopener noreferrer">&quot;Lunar X-View&quot; Computer Vision challenge</a>.</li></ul>
+                </div>
+                <button class="resume-team-info-toggle" type="button" aria-label="Show information about the Sapienza Technology Team" aria-expanded="false" aria-controls="sapienza-team-info">
+                  <i class="bi bi-info-circle" aria-hidden="true"></i>
+                </button>
+                <div class="resume-team-info" id="sapienza-team-info" role="region" aria-label="About the Sapienza Technology Team">
+                  <strong>About the SaSa: Sapienza Technology Team</strong>
+                  <div class="resume-team-info-intro">
+                    <img class="resume-team-info-image" src="assets/img/sapienza-team-rover.png" alt="A Sapienza Technology Team rover prototype on rocky terrain">
+                    <p>Founded in 2016, this <strong>interdisciplinary student team</strong> designs and builds <strong>rovers and drones</strong>, from hardware to software.</p>
+                  </div>
+                  <p class="mb-0">Since 2021, <strong>the team</strong> has competed in the European Rover Challenge, placing <strong>1st in Remote</strong> and <strong>6th in On-site</strong>.</p>
+                  <a href="https://www.sasa-aerospace.it/tech-team/" target="_blank" rel="noopener noreferrer">Visit the team website <i class="bi bi-box-arrow-up-right" aria-hidden="true"></i></a>
                 </div>
               </div>
             </div>
@@ -747,6 +759,25 @@
 
     <!-- Main JS File -->
     <script src="assets/js/main.js"></script>
+    <script>
+      document.querySelectorAll('[data-team-card]').forEach((card) => {
+        const toggle = card.querySelector('.resume-team-info-toggle');
+        const setPinned = (isPinned) => {
+          card.classList.toggle('is-pinned', isPinned);
+          toggle.setAttribute('aria-expanded', String(isPinned));
+          toggle.setAttribute('aria-label', `${isPinned ? 'Hide' : 'Show'} information about the Sapienza Technology Team`);
+        };
+
+        card.addEventListener('click', (event) => {
+          if (event.target.closest('a')) return;
+          setPinned(!card.classList.contains('is-pinned'));
+        });
+
+        document.addEventListener('click', (event) => {
+          if (!card.contains(event.target)) setPinned(false);
+        });
+      });
+    </script>
 
     <!-- Hero Three.js scene (ES module, needs SVGLoader for the nav icons) -->
     <script type="importmap">
