@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>A. Carotenuto | Few-Shot Hyperspectral Classification</title>
+  <title>A. Carotenuto | Few-Samples Hyperspectral Image Classification and Adaptive Band Selection</title>
   <meta name="description" content="A reproducible PyTorch reconstruction of CTA-Net for few-shot pixel-wise hyperspectral classification on Pavia University.">
   <meta name="keywords" content="hyperspectral imaging, few-shot learning, CNN, Transformer, PyTorch, Pavia University, CTA-Net">
 
@@ -43,14 +43,31 @@
 
   <main class="main">
     <section id="about" class="about section project-page">
-      <div class="container section-title-small" data-aos="fade-up"><h2>Hyperspectral Neural Networks for Few-Shot Classification</h2></div>
+      <div class="container section-title-small" data-aos="fade-up"><h2>Few-Samples Hyperspectral Image Classification and Adaptive Band Selection</h2></div>
       <section id="portfolio-details" class="portfolio-details section">
         <div class="container" data-aos="fade-up" data-aos-delay="100">
-          <div class="row gy-4">
+          <div class="row gy-1">
             <div class="col-lg-7">
               <div class="portfolio-details-slider swiper">
                 <div class="swiper-wrapper align-items-center">
-                  <div class="swiper-slide"><img src="../assets/img/portfolio/placeholder.png" alt="Project image placeholder"></div>
+                  <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/hyperspectral-fullmodel.png" alt="Pavia University ground truth and CTA-Net full-band classification map">
+                  </div>
+
+                  <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/cta-net-architecture.png" class="img-fluid" style="max-height: 70vh; object-fit: contain;" alt="CTA-Net architecture showing its multiscale CNN and Transformer branches">
+                  </div>
+
+                  <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/band-selection-diagram.png" class="img-fluid" style="max-height: 70vh; object-fit: contain;" alt="Band selector branch and band selection pipeline diagrams">
+                  </div>
+
+                  <div class="swiper-slide">
+                    <img src="../assets/img/portfolio/confusion-matrices-band-selection.png" class="img-fluid" style="max-height: 70vh; object-fit: contain;" alt="Side-by-side normalized test confusion matrices for the full-band CTA-CSA model and band-selection model">
+                  </div>
+
+
+
                 </div>
                 <div class="swiper-button-prev"></div>
                 <div class="swiper-button-next"></div>
@@ -66,6 +83,7 @@
                   <li><strong>Tech Stack</strong>: <span class="tech-tag">Python</span> <span class="tech-tag">PyTorch</span> <span class="tech-tag">NumPy</span> <span class="tech-tag">Matplotlib</span></li>
                   <li><strong>Project date</strong>: October 2026</li>
                   <li><a href="https://github.com/Alessandro-Carotenuto/Hyperspectral-Neural-Networks-Project" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-accent w-100 fs-6">Official Repository <i class="bi bi-github"></i></a></li>
+                  <li class="mt-2"><a href="https://www.kaggle.com/code/carotenutoalessandro/nn-project-few-samples-hsi-classification-cta-net?scriptVersionId=360167071" target="_blank" rel="noopener noreferrer" class="btn btn-sm btn-outline-accent w-100 fs-6">Kaggle Run <i class="bi bi-box-arrow-up-right"></i></a></li>
                 </ul>
               </div>
             </div>
@@ -77,24 +95,41 @@
               </div>
               <p class="small text-muted text-center mt-2">Complete CT + CSA + SA pipeline · split seed 42 · mean and sample standard deviation over 10 training seeds.</p>
             </div>
-            <div class="col-12 portfolio-description">
+            <div class="col-12 portfolio-description" style="padding-top: 4px;">
               <h2>Overview</h2>
-              <p>This project reconstructs the principal components of CTA-Net, introduced by <a href="https://doi.org/10.1016/j.neunet.2025.107283" target="_blank" rel="noopener noreferrer">Fu et al. (2025)</a>, a CNN-Transformer and channel-spatial attention approach for hyperspectral image classification with few labeled samples. It predicts the land-cover class at the center of each image patch, using Pavia University as the main experiment.</p>
-              <p>A multiscale CNN captures local spatial patterns while a Conformer-style Transformer branch models broader relationships. Their features are fused with a residual connection, then refined by channel and spatial attention. A training-only sample amplification pipeline combines original patches with noise-based, rotated and same-class direct-sum variants.</p>
-              <p>In the transformer-head ablation, the 8-head configuration achieved 88.42% overall accuracy, 90.07% average accuracy and 84.96% Cohen's Kappa, averaged over 10 training seeds on the fixed split (seed 42). Compared with the 4-head baseline, this is a gain of 2.87 percentage points in OA, 1.07 points in AA and 3.48 points in Kappa.</p>
+              <p>Given a <strong>15 × 15 hyperspectral image patch</strong>, CTA-Net predicts the land-cover class at its center using only a few labeled examples. This project reconstructs CTA-Net on Pavia University, where each class has 10 training and 5 validation pixels.</p>
+              <p>The model combines multiscale CNN features with a Conformer-style Transformer and channel-spatial attention. An experimental band-selection variant learns a global subset of spectral bands and exports a compact classifier.</p>
             </div>
           </div>
         </div>
       </section>
     </section>
 
+    <div id="spectral-selection" class="container mt-3 mb-3">
+      <div class="info-wrap bg-light rounded shadow-sm p-3">
+        <div class="row align-items-center gy-2">
+          <div class="col-lg-3">
+            <h3 class="h5 mb-1">Adaptive band selection</h3>
+            <p class="small mb-0">The model ranks bands, keeps one global subset, then fine-tunes a compact classifier. Default: 30% removed.</p>
+          </div>
+          <div class="col-lg-9">
+            <div class="row g-2 text-center">
+              <div class="col-md-4"><div class="border rounded p-2 h-100"><strong>70% removed</strong><br><span class="small">31 bands · 82.7 ± 3.3% val OA</span></div></div>
+              <div class="col-md-4"><div class="border rounded p-2 h-100"><strong>80% removed</strong><br><span class="small">21 bands · 83.6 ± 2.0% val OA</span></div></div>
+              <div class="col-md-4"><div class="border rounded p-2 h-100"><strong>90% removed</strong><br><span class="small">10 bands · 78.7 ± 6.6% val OA</span></div></div>
+            </div>
+          </div>
+        </div>
+        <p class="small text-muted mb-0 mt-2">Five seeds; validation accuracy, test set excluded. CPU latency ratios: 0.93×, 1.04×, 1.03×. <a href="https://github.com/Alessandro-Carotenuto/Hyperspectral-Neural-Networks-Project/blob/main/ablations.md" target="_blank" rel="noopener noreferrer">Full band-selection ablations</a>.</p>
+      </div>
+    </div>
     <section id="project-pillars" class="project-pillars section">
       <div class="container section-title-small" data-aos="fade-up"><h2>Key Elements</h2></div>
       <div class="container"><div class="row gy-4">
-        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-grid-3x3-gap fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">Few-shot protocol</h5><p>Only <strong>10 training</strong> and <strong>5 validation pixels per class</strong>; remaining labeled pixels form the test set.</p></div></div>
-        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-bezier2 fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">CNN + Transformer</h5><p>Parallel multiscale convolution and Transformer branches combine local spatial features with wider context.</p></div></div>
-        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-bounding-box-circles fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">Channel-spatial attention</h5><p>Sequential channel and spatial attention recalibrate features before producing the center-pixel class scores.</p></div></div>
-        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-arrow-repeat fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">Reproducible evaluation</h5><p>Fixed split, controlled training seeds, per-class metrics, confusion matrices and saved run configurations support analysis.</p></div></div>
+        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-grid-3x3-gap fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">Few-shot protocol</h5><p>10 labeled training pixels and 5 validation pixels per class.</p></div></div>
+        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-bezier2 fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">CTA-Net backbone</h5><p>Multiscale CNN, Conformer-style Transformer, and channel-spatial attention combine local and long-range features.</p></div></div>
+        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-arrow-repeat fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">Sample amplification</h5><p>Training-only noise, rotations, and same-class additions expand the few-shot data.</p></div></div>
+        <div class="col-lg-3 col-md-6"><div class="info-wrap text-center bg-light rounded shadow-sm p-4 h-100"><i class="bi bi-bounding-box-circles fs-1" style="color: var(--secondary-accent-color);"></i><h5 class="mt-2">Adaptive band selection</h5><p>Learns a global subset of spectral bands and fine-tunes a compact classifier.</p></div></div>
       </div></div>
     </section>
 
